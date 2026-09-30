@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1.0">
+  <zoom_level>6</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>294</x>
+      <y>0</y>
+      <w>246</w>
+      <h>210</h>
+    </coordinates>
+    <panel_attributes>guesswho::Board
+--
+-gameManager: GameManager
+-gridPanel: JPanel
+-characters: ArrayList&lt;Character&gt;
+-eliminationMode: JCheckBox
+-hasGuessed = false: boolean
+-hasAskedQuestion = false: boolean
+-eliminated = new ArrayList(): ArrayList&lt;Character&gt;
+-buttons = new ArrayList(): ArrayList&lt;JButton&gt;
+-askedQuestions = new ArrayList(): ArrayList&lt;Question&gt;
+--
++Board(GameManager gm): ctor
+-drawCharacterTiles(): void
+-handleTileClick(Character character, JButton button): void
+-checkGuess(Character guess): void
+-aiTakeTurnWithUserInput(): void
++updateBoard(ArrayList&lt;Character&gt; updatedCharacters): void
++triggerAITurn(): void
+-openQuestionGUI(): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>546</x>
+      <y>0</y>
+      <w>564</w>
+      <h>156</h>
+    </coordinates>
+    <panel_attributes>guesswho::Character
+--
+-name, hairColour, eyeColour, gender, facialHair, hairStyle, clothing: String
+-glasses: boolean
+--
++Character(String name, String hairColour, String eyeColour, String gender, String facialHair, String hairStyle, String clothing, boolean glasses): ctor
++getName(): String
++getHairColour(): String
++getEyeColour(): String
++getGender(): String
++getFacialHair(): String
++getHairStyle(): String
++getClothing(): String
++hasGlasses(): boolean
++matches(Question q): boolean
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1116</x>
+      <y>0</y>
+      <w>270</w>
+      <h>138</h>
+    </coordinates>
+    <panel_attributes>guesswho::Player
+--
+-mysteryCharacter: Character
+-possibleCharacters: ArrayList&lt;Character&gt;
+--
++Player(ArrayList&lt;Character&gt; allCharacters): ctor
++chooseMysteryCharacter(): void
++getMysteryCharacter(): Character
++updatePossibleCharacters(Question question, boolean answer): void
++getRemainingCount(): int
++getBestGuess(): Character
++answerQuestion(Question question): boolean
++getPossibleCharacters(): ArrayList&lt;Character&gt;
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>294</x>
+      <y>216</y>
+      <w>246</w>
+      <h>114</h>
+    </coordinates>
+    <panel_attributes>guesswho::AI
+--
+-possibleCharacters: ArrayList&lt;Character&gt;
+-mysteryCharacter: Character
+-askedQuestions: ArrayList&lt;String&gt;
+--
++AI(ArrayList&lt;Character&gt; allCharacters): ctor
++getMysteryCharacter(): Character
++updatePossibleCharacters(Question q, boolean answer): void
++findBestQuestion(): Question
++getPossibleCharacters(): ArrayList&lt;Character&gt;
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>546</x>
+      <y>216</y>
+      <w>168</w>
+      <h>114</h>
+    </coordinates>
+    <panel_attributes>guesswho::GameManager
+--
+-allCharacters: ArrayList&lt;Character&gt;
+-player: Player
+-ai: AI
+--
++GameManager(): ctor
++loadCharacters(): void
++getPlayer(): Player
++getAI(): AI
++getAllCharacters(): ArrayList&lt;Character&gt;
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>720</x>
+      <y>216</y>
+      <w>342</w>
+      <h>114</h>
+    </coordinates>
+    <panel_attributes>guesswho::UserQuestion
+--
+-attributeBox: JComboBox&lt;String&gt;
+-valueBox: JComboBox&lt;String&gt;
+-attributes: String[]
+-values: String[][]
+-gameManager: GameManager
+-board: Board
+--
++UserQuestion(String[] attributes, String[][] values, GameManager gm, Board board): ctor
+-updateValueBox(): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1068</x>
+      <y>216</y>
+      <w>180</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>guesswho::Question
+--
+-attribute: String
+-value: Object
+--
++Question(String attribute, Object value): ctor
++matches(Character character): boolean
++getAttribute(): String
++getValue(): Object
++toString(): String
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>294</x>
+      <y>336</y>
+      <w>222</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>guesswho::Tile
+--
+~button: JButton
+~cover: JPanel
+--
++Tile(int x, int y, int w, int h, ActionListener listener): ctor
++toggleCover(): void
++getButton(): JButton
++getCover(): JPanel
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>522</x>
+      <y>336</y>
+      <w>72</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>guesswho::Intro
+--
+--
++Intro(): ctor
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>600</x>
+      <y>336</y>
+      <w>108</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>guesswho::Main
+--
+--
++main(String[] args): void
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
